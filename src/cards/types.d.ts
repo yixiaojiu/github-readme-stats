@@ -29,6 +29,7 @@ export type StatCardOptions = CommonOptions & {
   text_bold: boolean;
   rank_icon: RankIcon;
   show: string[];
+  show_bg: boolean;
 };
 
 export type RepoCardOptions = CommonOptions & {

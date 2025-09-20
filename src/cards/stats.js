@@ -254,6 +254,7 @@ const renderStatsCard = (stats, options = {}) => {
     disable_animations = false,
     rank_icon = "default",
     show = [],
+    show_bg,
   } = options;
 
   const lheight = parseInt(String(line_height), 10);
@@ -483,8 +484,10 @@ const renderStatsCard = (stats, options = {}) => {
       bgColor,
       borderColor,
     },
+    cardFor: "stats",
   });
 
+  card.setBgVisible(show_bg);
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
   card.setCSS(cssStyles);

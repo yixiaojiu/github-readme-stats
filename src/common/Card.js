@@ -1,4 +1,5 @@
 import { encodeHTML, flexLayout } from "./utils.js";
+import bg from "../common/background";
 
 class Card {
   /**
@@ -7,6 +8,7 @@ class Card {
    * @param {object} args Card arguments.
    * @param {number?=} args.width Card width.
    * @param {number?=} args.height Card height.
+   * @param {string?=} args.cardFor
    * @param {number?=} args.border_radius Card border radius.
    * @param {string?=} args.customTitle Card custom title.
    * @param {string?=} args.defaultTitle Card default title.
@@ -27,12 +29,16 @@ class Card {
     customTitle,
     defaultTitle = "",
     titlePrefixIcon,
+    cardFor = null,
   }) {
     this.width = width;
     this.height = height;
 
     this.hideBorder = false;
     this.hideTitle = false;
+    this.hideBg = true;
+
+    this.cardFor = cardFor;
 
     this.border_radius = border_radius;
 
@@ -96,6 +102,10 @@ class Card {
     if (value) {
       this.height -= 30;
     }
+  }
+
+  setBgVisible(state) {
+    this.hideBg = !state;
   }
 
   /**
@@ -243,7 +253,7 @@ class Card {
           x="0.5"
           y="0.5"
           rx="${this.border_radius}"
-          height="99%"
+          height="99.5%"
           stroke="${this.colors.borderColor}"
           width="${this.width - 1}"
           fill="${
@@ -255,6 +265,18 @@ class Card {
         />
 
         ${this.hideTitle ? "" : this.renderTitle()}
+
+        ${this.hideBg ? "" : bg.renderBackground(this.cardFor)}
+        <rect
+          data-testid="card-bg2"
+          x="0.5"
+          y="0.5"
+          rx="4.5"
+          height="99.5%"
+          stroke="#E4E2E2"
+          width="${this.width - 1}"
+          stroke-opacity="${this.hideBorder ? 0 : 1}"
+        />
 
         <g
           data-testid="main-card-body"
