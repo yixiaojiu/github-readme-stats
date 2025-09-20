@@ -1,5 +1,5 @@
 import { encodeHTML, flexLayout } from "./utils.js";
-import bg from "../common/background";
+import { renderBackground } from "./background.js";
 
 class Card {
   /**
@@ -266,7 +266,7 @@ class Card {
 
         ${this.hideTitle ? "" : this.renderTitle()}
 
-        ${this.hideBg ? "" : bg.renderBackground(this.cardFor)}
+        ${this.hideBg ? "" : renderBackground(this.cardFor)}
         <rect
           data-testid="card-bg2"
           x="0.5"
